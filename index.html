@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XV Tania</title>
+    <style>
+        /* Importing modern, clean fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        /* Easy global tweaking */
+        :root {
+            --primary: #8e62b0; /* Lavender purple matching the flowers */
+            --bg: rgb(224, 200, 240); /* Your main background color */
+            --card-bg: #e9d7f5; /* Your requested light purple card color */
+            --text: #2b2b2b;
+            --white: #ffffff;
+            --shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .elegant-text { 
+            font-family: 'Playfair Display', serif; 
+            font-weight: 400; 
+        }
+
+        /* Hero Image Section - Full viewport height */
+        .hero {
+            height: 100vh;
+            /* Placeholder gradient to ensure text readability over the image */
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('YOUR_HERO_IMAGE_HERE.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero h1 { 
+            font-size: clamp(4rem, 8vw, 6rem); /* Responsive fluid typography */
+            letter-spacing: 2px; 
+            margin-bottom: 10px; 
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p { 
+            font-size: 1.2rem; 
+            text-transform: uppercase; 
+            letter-spacing: 6px; 
+        }
+
+        /* Centered Content Wrapper */
+        section { 
+            padding: 5rem 2rem; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            text-align: center; 
+        }
+
+        h2 { 
+            font-size: 2.5rem; 
+            margin-bottom: 2rem; 
+            color: var(--primary);
+        }
+
+        .quote { 
+            font-size: 1.5rem; 
+            color: #4a3b53; /* Darker tinted tone for visibility on the soft background */
+            margin-bottom: 3rem; 
+            padding: 0 20px;
+        }
+
+        /* Clean Grid System for Cards */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem; 
+            margin-top: 2rem; 
+        }
+
+        .card { 
+            background: var(--card-bg); /* New light purple background for the cards */
+            padding: 2.5rem; 
+            border-radius: 16px; 
+            box-shadow: var(--shadow); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .card img { 
+            width: 100%; 
+            border-radius: 10px; 
+            margin-bottom: 1.5rem; 
+            object-fit: cover; 
+            aspect-ratio: 4/3; 
+        }
+
+        .card h3 { 
+            font-size: 1.8rem; 
+            margin-bottom: 1rem; 
+        }
+
+        /* Modern UI Buttons */
+        .btn { 
+            display: inline-block; 
+            padding: 12px 28px; 
+            background: var(--primary); 
+            color: var(--white); 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.2s, transform 0.2s; 
+            margin-top: 1.5rem; 
+        }
+
+        .btn:hover { 
+            background: #6e4a8a; /* Darker, richer purple for hover */
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>[Tania]</h1>
+        <p>Mis XV Años</p>
+    </header>
+
+    <section>
+        <div class="quote elegant-text">
+            "Hay momentos en la vida que son especiales por sí mismos. Compartirlos con las personas que amas los hace inolvidables." ✨
+        </div>
+
+        <h2>Papás Y Padrinos</h2>
+        <div class="grid">
+            <div class="card"> <h3>Papás</h3>
+                <p>Miriam Massiel<br>Clemente</p>
+            </div>
+            <div class="card">
+                <h3>Padrinos</h3>
+                <p>Felicitas Barraza<br>Luis Gradilla</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>La Celebración</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="YOUR_CHURCH_IMAGE_HERE.jpg" alt="Ceremony">
+                <h3>Misa:</h3>
+                <p><strong>4:00 PM</strong></p>
+                <p>Parroquia Sta. Maria De Guadalupe<br><strong>C. Álvaro Obregón 16, Centro, El Grullo, Jal.</strong></p>
+                <a href="https://maps.app.goo.gl/4xxCdthTRDytKdzD9" target="_blank" rel="noopener noreferrer" class="btn">Ver En El Mapa</a>
+            </div>
+            <div class="card">
+                <img src="YOUR_VENUE_IMAGE_HERE.jpg" alt="Reception">
+                <h3>Recepción:</h3>
+                <p><strong>6:00 PM</strong></p>
+                <p>Salón La Quinta Jardín<br><strong>ㅤ</strong></p>
+                <a href="https://maps.app.goo.gl/2QzGGJXtPcfgqHe8A" target="_blank" rel="noopener noreferrer" class="btn">Ver En El Mapa</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Confirmar Asistencia</h2>
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <p>Para ayudarnos a organizar mejor esta gran celebración, por favor confírmanos tu asistencia llenando el formulario.</p>
+            <a href="https://forms.gle/bs1fm5nda84h35n2A" target="_blank" rel="noopener noreferrer" class="btn">Confirmar Aquí</a>
+        </div>
+    </section>
+
+</body>
+</html>
