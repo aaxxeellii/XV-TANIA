@@ -6,7 +6,6 @@
     <title>XV Tania</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-    
     <link rel="apple-touch-icon" href="favicon.png">
 
     <style>
@@ -15,9 +14,9 @@
 
         /* Easy global tweaking */
         :root {
-            --primary: #8e62b0; /* Lavender purple matching the flowers */
-            --bg: rgb(224, 200, 240); /* Your main background color */
-            --card-bg: #e9d7f5; /* Your requested light purple card color */
+            --primary: #8e62b0; 
+            --bg: rgb(224, 200, 240); 
+            --card-bg: #e9d7f5; 
             --text: #2b2b2b;
             --white: #ffffff;
             --shadow: 0 8px 30px rgba(0,0,0,0.06);
@@ -38,14 +37,13 @@
             font-weight: 400; 
         }
 
-        /* Hero Image Section - Full viewport height */
+        /* Hero Image Section */
         .hero {
             height: 100vh;
-            /* Placeholder gradient to ensure text readability over the image */
             background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('YOUR_HERO_IMAGE_HERE.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -55,7 +53,7 @@
         }
 
         .hero h1 { 
-            font-size: clamp(4rem, 8vw, 6rem); /* Responsive fluid typography */
+            font-size: clamp(4rem, 8vw, 6rem); 
             letter-spacing: 2px; 
             margin-bottom: 10px; 
             text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
@@ -69,36 +67,36 @@
 
         /* Centered Content Wrapper */
         section { 
-            padding: 5rem 2rem; 
+            padding: clamp(3rem, 5vw, 5rem) 1.5rem; /* Scaled down side padding for mobile */
             max-width: 1000px; 
             margin: 0 auto; 
             text-align: center; 
         }
 
         h2 { 
-            font-size: 2.5rem; 
+            font-size: clamp(2rem, 5vw, 2.5rem); 
             margin-bottom: 2rem; 
             color: var(--primary);
         }
 
         .quote { 
-            font-size: 1.5rem; 
-            color: #4a3b53; /* Darker tinted tone for visibility on the soft background */
+            font-size: clamp(1.2rem, 4vw, 1.5rem); 
+            color: #4a3b53; 
             margin-bottom: 3rem; 
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         /* Clean Grid System for Cards */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 2.5rem; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly smaller min-width */
+            gap: 2rem; 
             margin-top: 2rem; 
         }
 
         .card { 
-            background: var(--card-bg); /* New light purple background for the cards */
-            padding: 2.5rem; 
+            background: var(--card-bg); 
+            padding: clamp(1.5rem, 5vw, 2.5rem); /* Fluid padding: smaller on mobile, larger on desktop */
             border-radius: 16px; 
             box-shadow: var(--shadow); 
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
@@ -139,37 +137,43 @@
         }
 
         .btn:hover { 
-            background: #6e4a8a; /* Darker, richer purple for hover */
+            background: #6e4a8a; 
             transform: scale(1.05);
         }
 
-        /* Countdown specific styles */
+        /* Countdown specific styles - FIXED FOR MOBILE */
         .countdown-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
+            /* minmax(0, 1fr) is the magic bullet here. It allows the grid items to shrink below their min-content width */
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: clamp(0.25rem, 2vw, 1rem); /* Fluid gap: tight on mobile, spacious on desktop */
             margin-top: 1.5rem;
         }
 
         .countdown-box {
             background: rgba(255, 255, 255, 0.4);
-            padding: 1rem 0.5rem;
+            padding: clamp(0.5rem, 2vw, 1rem) 0.1rem; /* Less horizontal padding on mobile */
             border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .countdown-num {
-            font-size: 2rem;
+            font-size: clamp(1.2rem, 6vw, 2rem); /* Fluid font sizing so it scales down perfectly */
             font-weight: 700;
             color: var(--primary);
-            display: block;
+            line-height: 1.2;
         }
 
         .countdown-label {
-            font-size: 0.75rem;
+            font-size: clamp(0.6rem, 2.5vw, 0.75rem); /* Keeps labels proportional */
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
             color: #555;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
@@ -187,7 +191,8 @@
 
         <h2>Papás Y Padrinos</h2>
         <div class="grid">
-            <div class="card"> <h3>Papás</h3>
+            <div class="card"> 
+                <h3>Papás</h3>
                 <p>Miriam Massiel<br>Clemente</p>
             </div>
             <div class="card">
@@ -227,7 +232,7 @@
 
     <section style="padding-top: 0;">
         <div class="card" style="max-width: 600px; margin: 0 auto;">
-            <h3 class="elegant-text" style="font-size: 1.6rem; margin-bottom: 0.5rem;">Días hasta mis XV años:</h3>
+            <h3 class="elegant-text" style="font-size: clamp(1.4rem, 5vw, 1.6rem); margin-bottom: 0.5rem;">Días hasta mis XV años:</h3>
             <div class="countdown-container">
                 <div class="countdown-box">
                     <span class="countdown-num" id="days">00</span>
@@ -264,20 +269,17 @@
                 return;
             }
 
-            // Time calculation algorithms
             const d = Math.floor(difference / (1000 * 60 * 60 * 24));
             const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-            // Padding single digits with a leading zero for UI alignment stability
             document.getElementById("days").innerText = d.toString().padStart(2, '0');
             document.getElementById("hours").innerText = h.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
             document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
         }
 
-        // Run countdown instantly on load, then cycle every 1000ms
         updateCountdown();
         setInterval(updateCountdown, 1000);
     </script>
