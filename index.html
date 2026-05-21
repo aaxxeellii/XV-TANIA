@@ -141,6 +141,35 @@
             background: #6e4a8a; /* Darker, richer purple for hover */
             transform: scale(1.05);
         }
+
+        /* Countdown specific styles */
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 1rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        .countdown-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -194,6 +223,63 @@
             <a href="https://forms.gle/bs1fm5nda84h35n2A" target="_blank" rel="noopener noreferrer" class="btn">Confirmar Aquí</a>
         </div>
     </section>
+
+    <section style="padding-top: 0;">
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <h3 class="elegant-text" style="font-size: 1.6rem; margin-bottom: 0.5rem;">Días hasta mis XV años:</h3>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span class="countdown-num" id="days">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-num" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-num" id="minutes">00</span>
+                    <span class="countdown-label">Min</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-num" id="seconds">00</span>
+                    <span class="countdown-label">Seg</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function updateCountdown() {
+            // Target date configured explicitly for Sept 5, 2026 at 16:00:00 GMT-0600
+            const targetDate = new Date("2026-09-05T16:00:00-06:00").getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            // Time calculation algorithms
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Padding single digits with a leading zero for UI alignment stability
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+        }
+
+        // Run countdown instantly on load, then cycle every 1000ms
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
 
 </body>
 </html>
