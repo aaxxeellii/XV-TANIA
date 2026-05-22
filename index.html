@@ -115,11 +115,16 @@
             aspect-ratio: 4/3; 
         }
 
-        /* Estilo especial para la foto de la quinceañera */
+        /* Estilo especial para la foto de la quinceañera suelta */
         .quince-photo {
+            width: 100%;
+            border-radius: 16px; /* Mantiene la estética de las cards */
+            box-shadow: var(--shadow);
+            object-fit: cover;
             aspect-ratio: auto !important;
             max-height: 700px;
             object-position: center;
+            display: block;
         }
 
         .card h3 { 
@@ -190,7 +195,7 @@
         }
 
         .date-huge {
-            font-size: clamp(2.5rem, 6vw, 4rem); /* FECHA GRANDE */
+            font-size: clamp(2.5rem, 6vw, 4rem); 
             line-height: 1.2;
             display: block;
             margin-bottom: 0;
@@ -199,8 +204,7 @@
 
         .tania-name-huge {
             font-size: clamp(2rem, 5vw, 3rem);
-            margin-top: 1rem;
-            margin-bottom: 0;
+            margin: 0; /* Reset margin para que quede centrado perfecto en su card chica */
         }
     </style>
 </head>
@@ -250,9 +254,12 @@
     </section>
 
     <section>
-        <div class="card" style="max-width: 700px; margin: 0 auto; padding: 1rem; margin-bottom: 2rem;">
-            <img src="TU_FOTO_AQUI.jpg" alt="Tania XV" class="quince-photo">
+        <div class="card" style="max-width: 350px; margin: 0 auto 2rem auto; padding: 1rem;">
             <h3 class="tania-date-font tania-name-huge">Tania</h3>
+        </div>
+
+        <div style="max-width: 700px; margin: 0 auto 3rem auto;">
+            <img src="TU_FOTO_AQUI.png" alt="Tania XV" class="quince-photo">
         </div>
 
         <div class="card" style="max-width: 600px; margin: 0 auto; padding: 2.5rem 1.5rem;">
