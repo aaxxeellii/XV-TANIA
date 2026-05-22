@@ -10,7 +10,7 @@
 
     <style>
         /* Importing modern, clean fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght=300;400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap');
 
         /* Easy global tweaking */
         :root {
@@ -182,7 +182,9 @@
             margin-top: 0.25rem;
         }
 
+        /* Estilo unificado para fecha y nombre en Montserrat */
         .event-date {
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.4rem;
             font-weight: 600;
             color: var(--primary);
@@ -237,9 +239,13 @@
     </section>
 
     <section>
-        <div class="card" style="max-width: 700px; margin: 0 auto; padding: 1rem;">
+        <div class="card" style="max-width: 700px; margin: 0 auto; padding: 1rem; margin-bottom: 2rem;">
             <img src="TU_FOTO_AQUI.jpg" alt="Tania XV" class="quince-photo">
-            <h3 class="elegant-text" style="margin-top: 1rem;">Tania</h3>
+            <h3 class="event-date" style="margin-top: 1rem; margin-bottom: 0; font-size: 1.8rem;">Tania</h3>
+        </div>
+
+        <div class="card" style="max-width: 450px; margin: 0 auto; padding: 1.2rem;">
+            <span class="event-date" style="margin-bottom: 0; letter-spacing: 1px;">5 de Septiembre, 2026</span>
         </div>
     </section>
 
@@ -253,8 +259,6 @@
 
     <section style="padding-top: 0;">
         <div class="card" style="max-width: 600px; margin: 0 auto;">
-            <span class="event-date">5 de Septiembre, 2026</span>
-            
             <h3 class="elegant-text" style="font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 0.5rem;">Días hasta mis XV años:</h3>
             <div class="countdown-container">
                 <div class="countdown-box">
