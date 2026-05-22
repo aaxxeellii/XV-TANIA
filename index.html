@@ -67,7 +67,7 @@
 
         /* Centered Content Wrapper */
         section { 
-            padding: clamp(3rem, 5vw, 5rem) 1.5rem; /* Scaled down side padding for mobile */
+            padding: clamp(3rem, 5vw, 5rem) 1.5rem; 
             max-width: 1000px; 
             margin: 0 auto; 
             text-align: center; 
@@ -89,14 +89,14 @@
         /* Clean Grid System for Cards */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly smaller min-width */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 2rem; 
             margin-top: 2rem; 
         }
 
         .card { 
             background: var(--card-bg); 
-            padding: clamp(1.5rem, 5vw, 2.5rem); /* Fluid padding: smaller on mobile, larger on desktop */
+            padding: clamp(1.5rem, 5vw, 2.5rem); 
             border-radius: 16px; 
             box-shadow: var(--shadow); 
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
@@ -113,6 +113,13 @@
             margin-bottom: 1.5rem; 
             object-fit: cover; 
             aspect-ratio: 4/3; 
+        }
+
+        /* Estilo especial para la foto de la quinceañera */
+        .quince-photo {
+            aspect-ratio: auto !important;
+            max-height: 700px;
+            object-position: center;
         }
 
         .card h3 { 
@@ -141,18 +148,17 @@
             transform: scale(1.05);
         }
 
-        /* Countdown specific styles - FIXED FOR MOBILE */
+        /* Countdown specific styles */
         .countdown-container {
             display: grid;
-            /* minmax(0, 1fr) is the magic bullet here. It allows the grid items to shrink below their min-content width */
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: clamp(0.25rem, 2vw, 1rem); /* Fluid gap: tight on mobile, spacious on desktop */
+            gap: clamp(0.25rem, 2vw, 1rem); 
             margin-top: 1.5rem;
         }
 
         .countdown-box {
             background: rgba(255, 255, 255, 0.4);
-            padding: clamp(0.5rem, 2vw, 1rem) 0.1rem; /* Less horizontal padding on mobile */
+            padding: clamp(0.5rem, 2vw, 1rem) 0.1rem; 
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -161,19 +167,27 @@
         }
 
         .countdown-num {
-            font-size: clamp(1.2rem, 6vw, 2rem); /* Fluid font sizing so it scales down perfectly */
+            font-size: clamp(1.2rem, 6vw, 2rem); 
             font-weight: 700;
             color: var(--primary);
             line-height: 1.2;
         }
 
         .countdown-label {
-            font-size: clamp(0.6rem, 2.5vw, 0.75rem); /* Keeps labels proportional */
+            font-size: clamp(0.6rem, 2.5vw, 0.75rem); 
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
             color: #555;
             margin-top: 0.25rem;
+        }
+
+        .event-date {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
         }
     </style>
 </head>
@@ -223,6 +237,13 @@
     </section>
 
     <section>
+        <div class="card" style="max-width: 700px; margin: 0 auto; padding: 1rem;">
+            <img src="TU_FOTO_AQUI.jpg" alt="Tania XV" class="quince-photo">
+            <h3 class="elegant-text" style="margin-top: 1rem;">Tania</h3>
+        </div>
+    </section>
+
+    <section>
         <h2>Confirmar Asistencia</h2>
         <div class="card" style="max-width: 600px; margin: 0 auto;">
             <p>Para ayudarnos a organizar mejor esta gran celebración, por favor confírmanos tu asistencia llenando el formulario.</p>
@@ -232,7 +253,9 @@
 
     <section style="padding-top: 0;">
         <div class="card" style="max-width: 600px; margin: 0 auto;">
-            <h3 class="elegant-text" style="font-size: clamp(1.4rem, 5vw, 1.6rem); margin-bottom: 0.5rem;">Días hasta mis XV años:</h3>
+            <span class="event-date">5 de Septiembre, 2026</span>
+            
+            <h3 class="elegant-text" style="font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 0.5rem;">Días hasta mis XV años:</h3>
             <div class="countdown-container">
                 <div class="countdown-box">
                     <span class="countdown-num" id="days">00</span>
@@ -256,7 +279,6 @@
 
     <script>
         function updateCountdown() {
-            // Target date configured explicitly for Sept 5, 2026 at 16:00:00 GMT-0600
             const targetDate = new Date("2026-09-05T16:00:00-06:00").getTime();
             const now = new Date().getTime();
             const difference = targetDate - now;
