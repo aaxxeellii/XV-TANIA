@@ -72,7 +72,8 @@
             background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('YOUR_HERO_IMAGE_HERE.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; 
+            /* 🔧 THE FIX: Changed from 'fixed' to 'scroll' for flawless iOS compatibility */
+            background-attachment: scroll; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -136,12 +137,12 @@
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; 
         }
 
-        /* 🔧 THE FIX: Explicitly combine the slow reveal with the shadow transition */
+        /* 🔧 Explicitly combine the slow reveal with the shadow transition */
         .card.reveal {
             transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
         }
 
-        /* 🔧 THE FIX: Once hovered, switch the transform transition BACK to fast and snappy */
+        /* 🔧 Once hovered, switch the transform transition BACK to fast and snappy */
         .card.reveal:hover, .card:hover { 
             transform: translateY(-8px) scale(1.02); 
             box-shadow: 0 15px 45px rgba(0,0,0,0.12);
