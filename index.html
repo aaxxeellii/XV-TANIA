@@ -37,6 +37,35 @@
             font-weight: 400; 
         }
 
+        /* --- ANIMATION CLASSES --- */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Scroll reveal styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            /* Slower, ultra-smooth cubic bezier for the fade-in */
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        /* ------------------------- */
+
         /* Hero Image Section */
         .hero {
             height: 100vh;
@@ -57,12 +86,16 @@
             letter-spacing: 2px; 
             margin-bottom: 10px; 
             text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            animation: heroFadeIn 1.2s ease-out forwards;
         }
 
         .hero p { 
             font-size: 1.2rem; 
             text-transform: uppercase; 
             letter-spacing: 6px; 
+            opacity: 0;
+            animation: heroFadeIn 1.2s ease-out 0.4s forwards;
         }
 
         /* Centered Content Wrapper */
@@ -99,12 +132,20 @@
             padding: clamp(1.5rem, 5vw, 2.5rem); 
             border-radius: 16px; 
             box-shadow: var(--shadow); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            /* Default fast transition for cards that don't have .reveal */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; 
         }
 
-        .card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        /* 🔧 THE FIX: Explicitly combine the slow reveal with the shadow transition */
+        .card.reveal {
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        /* 🔧 THE FIX: Once hovered, switch the transform transition BACK to fast and snappy */
+        .card.reveal:hover, .card:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
         }
 
         .card img { 
@@ -118,13 +159,14 @@
         /* Estilo especial para la foto de la quinceañera suelta */
         .quince-photo {
             width: 100%;
-            border-radius: 16px; /* Mantiene la estética de las cards */
+            border-radius: 16px;
             box-shadow: var(--shadow);
             object-fit: cover;
             aspect-ratio: auto !important;
             max-height: 700px;
             object-position: center;
             display: block;
+            animation: float 6s ease-in-out infinite; /* Continuous floating effect */
         }
 
         .card h3 { 
@@ -144,13 +186,14 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background 0.2s, transform 0.2s; 
+            transition: background 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; 
             margin-top: 1.5rem; 
         }
 
         .btn:hover { 
             background: #6e4a8a; 
-            transform: scale(1.05);
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(142, 98, 176, 0.4);
         }
 
         /* Countdown specific styles */
@@ -169,6 +212,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .countdown-box:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
         }
 
         .countdown-num {
@@ -204,7 +253,7 @@
 
         .tania-name-huge {
             font-size: clamp(2rem, 5vw, 3rem);
-            margin: 0; /* Reset margin para que quede centrado perfecto en su card chica */
+            margin: 0; 
         }
     </style>
 </head>
@@ -216,17 +265,17 @@
     </header>
 
     <section>
-        <div class="quote elegant-text">
+        <div class="quote elegant-text reveal">
             "Hay momentos en la vida que son especiales por sí mismos. Compartirlos con las personas que amamos los hace inolvidables." ✨
         </div>
 
-        <h2>Papás Y Padrinos</h2>
+        <h2 class="reveal">Papás Y Padrinos</h2>
         <div class="grid">
-            <div class="card"> 
+            <div class="card reveal delay-1"> 
                 <h3>Papás</h3>
                 <p>Miriam Massiel Pérez Enciso<br>Clemente Barraza Pérez</p>
             </div>
-            <div class="card">
+            <div class="card reveal delay-2">
                 <h3>Padrinos</h3>
                 <p>Felicitas Barraza<br>Luis Gradilla</p>
             </div>
@@ -234,16 +283,16 @@
     </section>
 
     <section>
-        <h2>La Celebración</h2>
+        <h2 class="reveal">La Celebración</h2>
         <div class="grid">
-            <div class="card">
+            <div class="card reveal delay-1">
                 <img src="YOUR_CHURCH_IMAGE_HERE.jpg" alt="Ceremony">
                 <h3>Misa:</h3>
                 <p><strong>4:00 PM</strong></p>
                 <p>Parroquia Sta. Maria De Guadalupe<br><strong>C. Álvaro Obregón 16, Centro, El Grullo, Jal.</strong></p>
                 <a href="https://maps.app.goo.gl/4xxCdthTRDytKdzD9" target="_blank" rel="noopener noreferrer" class="btn">Cómo Llegar</a>
             </div>
-            <div class="card">
+            <div class="card reveal delay-2">
                 <img src="YOUR_VENUE_IMAGE_HERE.jpg" alt="Reception">
                 <h3>Recepción:</h3>
                 <p><strong>6:00 PM</strong></p>
@@ -254,31 +303,31 @@
     </section>
 
     <section style="padding-bottom: 0;">
-        <div class="card" style="max-width: 350px; margin: 0 auto; padding: 0.5rem 1rem;">
+        <div class="card reveal" style="max-width: 350px; margin: 0 auto; padding: 0.5rem 1rem;">
             <h3 class="tania-date-font tania-name-huge">Tania</h3>
         </div>
     </section>
 
-    <section style="padding-top: 2rem; padding-bottom: 2rem;">
+    <section style="padding-top: 2rem; padding-bottom: 2rem;" class="reveal delay-1">
         <img src="TU_FOTO_AQUI.png" alt="Tania XV" class="quince-photo" style="max-width: 700px; margin: 0 auto;">
     </section>
 
     <section style="padding-top: 0;">
-        <div class="card" style="max-width: 600px; margin: 0 auto; padding: 2.5rem 1.5rem;">
+        <div class="card reveal" style="max-width: 600px; margin: 0 auto; padding: 2.5rem 1.5rem;">
             <span class="tania-date-font date-huge">5 de Septiembre,<br>2026</span>
         </div>
     </section>
 
     <section>
-        <h2>Confirmar Asistencia</h2>
-        <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <h2 class="reveal">Confirmar Asistencia</h2>
+        <div class="card reveal delay-1" style="max-width: 600px; margin: 0 auto;">
             <p>Para ayudarnos a organizar mejor esta gran celebración, por favor confírmanos tu asistencia llenando el formulario.</p>
             <a href="https://forms.gle/bs1fm5nda84h35n2A" target="_blank" rel="noopener noreferrer" class="btn">Confirmar Aquí</a>
         </div>
     </section>
 
     <section style="padding-top: 0;">
-        <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <div class="card reveal" style="max-width: 600px; margin: 0 auto;">
             <h3 class="elegant-text" style="font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 0.5rem;">Días hasta mis XV años:</h3>
             <div class="countdown-container">
                 <div class="countdown-box">
@@ -302,6 +351,7 @@
     </section>
 
     <script>
+        // --- COUNTDOWN LOGIC ---
         function updateCountdown() {
             const targetDate = new Date("2026-09-05T16:00:00-06:00").getTime();
             const now = new Date().getTime();
@@ -328,6 +378,27 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        // --- SCROLL ANIMATION OBSERVER ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll(".reveal");
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // Optional: Stop observing once revealed so it doesn't animate out and in repeatedly
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // Triggers when 15% of the element is visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
     </script>
 
 </body>
